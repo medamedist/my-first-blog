@@ -1,33 +1,13 @@
+{% extends 'blog/base.html' %}
 
-
-
-<html>
-<head>
-<title>Djago girls blog</title>
-</head>
-
-<body>
-
-<div>
-
-<h1><a href="">Django Girls Blog</a><h1>
-
-</div>
-
-<div>
-<p>published: 14.06.2016,12:14</p>
-<h1><a href="">ilk blog</a><h1>
-<p>yeah</p>
-
-</div>
-
-{% for post in posts %}
-    <div>
-        <p>published: {{ post.yayinlama_tarihi }}</p>
-        <h1><a href="">{{ post.baslik }}</a></h1>
-        <p>{{ post.yazi|linebreaks }}</p>
-    </div>
-{% endfor %}
-
-</body>
-</html>
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.yayinlama_tarihi }}
+            </div>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.baslik }}</a></h1>
+            <p>{{ post.yazi|linebreaks }}</p>
+        </div>
+    {% endfor %}
+{% endblock content %}
